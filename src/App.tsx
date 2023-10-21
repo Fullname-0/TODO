@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TasksList from "./components/TasksList";
+import Input from "./components/Input";
+import styles from './styles/Layout.module.scss'
+import {useDispatch, useSelector} from "react-redux";
+import {clearTasks} from "./store/tasksSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  const tasks = useSelector((store: any) => store.tasks)
+
+  const handleButton = () => {
+    dispatch(clearTasks())
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Input />
+      <TasksList />
+      {tasks.length > 0 && <div className={styles.layout__box}>
+        <button className={styles.layout__button} onClick={handleButton}>
+          Clear all
+        </button>
+      </div>}
+
+    </main>
   );
 }
 

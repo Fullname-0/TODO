@@ -1,24 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import Button from "../components/UI/Button";
-
-const mockData = [
-  {
-    "id": 1,
-    "first_name": "Fletcher",
-    "last_name": "McVanamy",
-    "email": "mmcvanamy0@e-recht24.de",
-    "age": 30
-  }, {
-    "id": 2,
-    "first_name": "Clarice",
-    "last_name": "Harrild",
-    "email": "charrild1@dion.ne.jp",
-    "age": 35
-  },
-]
-
+import Header from "../components/Header";
 test("Testing Header component", () => {
-  render(<Button />);
+  render(<Header />);
 
-  expect(screen.getByText(/fletcher/i)).toBeInTheDocument();
+  const element = screen.getByText(/to do list/i);
+
+  expect(element).toBeInTheDocument();
 })
